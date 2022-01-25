@@ -31,7 +31,11 @@ const Products = () => {
 
 
   return (
-    <div>
+    <div className='px-8'>
+      <div>
+        <input className='border-2 border-black' id='search' type='search' />
+        <label htmlFor='search'>Search</label>
+      </div>
       <div className='grid grid-cols-4 text-center items-center border-b-2'>
         <h2>Name</h2>
         <h2>Price</h2>
