@@ -1,35 +1,18 @@
 import React, {useState, useEffect, useRef} from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux'
+import { listCustomers } from '../actions/customerActions';
 
 const Customers = () => {
-  const [customers, setCustomers] = useState([])
-  const [loading, setLoading] = useState(false)
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [id, setId] = useState('')
 
   const modal = useRef(null)
+  const dispatch = useDispatch()
 
-  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
+  const customerList = useSelector(state => state.customerList)
+  const {customers, error, loading} = customerList
 
-  const authAxios = axios.create({
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  })
-
-  const getCustomers = async () => {
-    setLoading(true)
-    try {
-      const res = await authAxios.get(`https://bagcomfort.com/api/customer`)
-      setCustomers(res.data.data)
-      setLoading(false)
-
-      console.log(customers, res.data.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
   const onSubmit = () => {
     console.log(name, address, id)
   }
@@ -41,8 +24,9 @@ const Customers = () => {
   }
 
   useEffect(() => {
-    getCustomers()
-  }, []);
+    dispatch(listCustomers())
+    // console.log(name,address)
+  }, [dispatch]);
 
 
 
@@ -55,15 +39,15 @@ const Customers = () => {
           <h2>Add Customer</h2>
           <div className='grid grid-cols-2 pt-4 items-center w-3/4 m-auto mb-4'>
             <label htmlFor='name'>Name</label>
-            <input className='text-black' type='text' name='name' value={name} onChange={e => setName(e.target.value)} />
+            <input className='text-black' type='text' name='name' value={customers.name} onChange={e => setName(e.target.value)} />
           </div>
           <div className='grid grid-cols-2 items-center w-3/4 m-auto mb-4'>
             <label htmlFor='address'>Address</label>
-            <input className='text-black' type='text' name='address' value={address} onChange={e => setAddress(e.target.value)} />
+            <input className='text-black' type='text' name='address' value={customers.address} onChange={e => setAddress(e.target.value)} />
           </div>
           <div className='grid grid-cols-2 items-center w-3/4 m-auto mb-4'>
             <label htmlFor='id'>Id</label>
-            <input className='text-black' type='text' name='id' value={id} onChange={e => setId(e.target.value)} />
+            <input className='text-black' type='text' name='id' value={customers.id} onChange={e => setId(e.target.value)} />
           </div>
           <button onClick={onSubmit} className='bg-black text-white p-4 rounded'>Enter</button>
         </div>
