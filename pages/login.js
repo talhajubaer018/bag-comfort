@@ -13,38 +13,27 @@ const Login = () => {
   const loginClick = async () => {
     setError(null)
     setLoading(true)
-    axios.post(`https://bagcomfort.com/api/login`, {
+    await axios.post(`https://bagcomfort.com/api/login`, {
       phone: phone,
       password: password
     }).then(response => {
       setLoading(false)
+
       setUserSession(response.data.token)
+      localStorage.setItem('token', response.data.data.access_token)
+
       console.log(response)
-      router.push('/success')
+      router.push('/products')
     }).catch(error => {
       setLoading(false)
       if(error){
-        // setError(error.response.data)
+        setError(error.response.data)
         console.error(error)
       }
       else {
         setError('Something went wrong')
       }
     })
-
-
-    // let loginInfo = {phone, password}
-    // let res = await fetch(`https://bagcomfort.com/api/login`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //   },
-    //   body: JSON.stringify(loginInfo)
-    // })
-    // res = await res.json()
-    // localStorage.setItem('user-info' ,JSON.stringify(res))
-    // router.push('/success')
   }
 
   return (

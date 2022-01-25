@@ -7,7 +7,9 @@ const Header = () => {
     <div className='grid grid-cols-3 text-center items-center px-16 py-8'>
       <div className='flex gap-12 text-xl'>
         <h2>SHOP</h2>
-        <h2>PRODUCTS</h2>
+        <Link href="/products">
+          <a><h2>PRODUCTS</h2></a>
+        </Link>
       </div>
       <div>
         <h1 className='text-3xl'>BAG COMFORT</h1>
