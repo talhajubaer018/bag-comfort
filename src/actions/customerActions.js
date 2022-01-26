@@ -1,4 +1,4 @@
-import { CUSTOMERS_LIST_REQUEST, CUSTOMERS_LIST_SUCCESS, CUSTOMERS_LIST_FAIL } from './types'
+import { CUSTOMERS_LIST_REQUEST, CUSTOMERS_LIST_SUCCESS, CUSTOMERS_LIST_FAIL, CUSTOMER_CREATE_REQUEST, CUSTOMER_CREATE_SUCCESS, CUSTOMER_CREATE_FAIL } from './types'
 import axios from 'axios'
 
 export const listCustomers = () => async (dispatch) => {
@@ -27,3 +27,33 @@ export const listCustomers = () => async (dispatch) => {
     }
 }
 
+export const createCustomer = (name, address, id) => async (dispatch) => {
+  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
+
+  const authAxios = axios.create({
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  try {
+    dispatch({ type: CUSTOMER_CREATE_REQUEST })
+
+    const { data } = await authAxios.post(`https://bagcomfort.com/api/customer`, {
+      name: name,
+      address: address,
+      state_id: id,
+
+    })
+
+    dispatch({
+      type: CUSTOMER_CREATE_SUCCESS,
+      payload: data.data
+    })
+
+  } catch (error) {
+    dispatch({
+      type: CUSTOMER_CREATE_FAIL,
+      payload: error.response
+    })
+  }
+}

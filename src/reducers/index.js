@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 
-import {customerListReducer} from './customerReducer'
+import {customerListReducer, customerCreateReducer} from './customerReducer'
 
 export default combineReducers({
   customerList: customerListReducer,
+  customerCreate: customerCreateReducer,
 })

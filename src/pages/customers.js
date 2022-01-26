@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { listCustomers } from '../actions/customerActions';
+
+import { listCustomers, createCustomer } from '../actions/customerActions';
 
 const Customers = () => {
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
-  const [id, setId] = useState('')
+  const [state_id, setState_Id] = useState('')
 
   const modal = useRef(null)
   const dispatch = useDispatch()
@@ -13,8 +14,14 @@ const Customers = () => {
   const customerList = useSelector(state => state.customerList)
   const {customers, error, loading} = customerList
 
-  const onSubmit = () => {
-    console.log(name, address, id)
+  const customerCreate = useSelector(state => state.customerCreate)
+  const { loading: loadingCreate, error: errorCreate, success: successCreate, customer: createdCustomer} = customerCreate
+
+  const createCustomerHandler = () => {
+    dispatch(createCustomer(name, address, state_id))
+    if(!loading) {
+      modal.current.classList.remove('show')
+    }
   }
   const modalOpen = () => {
     modal.current.classList.add('show')
@@ -26,7 +33,7 @@ const Customers = () => {
   useEffect(() => {
     dispatch(listCustomers())
     // console.log(name,address)
-  }, [dispatch]);
+  }, [dispatch, successCreate, createdCustomer]);
 
 
 
@@ -47,9 +54,9 @@ const Customers = () => {
           </div>
           <div className='grid grid-cols-2 items-center w-3/4 m-auto mb-4'>
             <label htmlFor='id'>Id</label>
-            <input className='text-black' type='text' name='id' value={customers.id} onChange={e => setId(e.target.value)} />
+            <input className='text-black' type='text' name='state_id' value={customers.id} onChange={e => setState_Id(e.target.value)} />
           </div>
-          <button onClick={onSubmit} className='bg-black text-white p-4 rounded'>Enter</button>
+          <button onClick={createCustomerHandler} className='bg-black text-white p-4 rounded'>Enter</button>
         </div>
       </div>
       <div className='flex items-center justify-center gap-x-8 py-4'>

@@ -43,7 +43,7 @@ const Products = () => {
         <h2>Details</h2>
       </div>
       {products.map(product => (
-        <div className='grid grid-cols-4 text-center items-center border-b-2'>
+        <div key={product.id} className='grid grid-cols-4 text-center items-center border-b-2'>
           <h2>{product.name}</h2>
           <h2>{product.price}</h2>
           <h2>{product.stock}</h2>
