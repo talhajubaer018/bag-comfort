@@ -2,39 +2,29 @@ import React, {useState, useEffect} from 'react';
 import { useRouter } from 'next/router'
 import axios from 'axios';
 import { setUserSession } from '../components/Utils/Common';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../actions/userActions';
 
 const Login = () => {
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const loginClick = async () => {
-    setError(null)
-    setLoading(true)
-    await axios.post(`https://bagcomfort.com/api/login`, {
-      phone: phone,
-      password: password
-    }).then(response => {
-      setLoading(false)
+  const dispatch = useDispatch()
 
-      setUserSession(response.data.token)
-      localStorage.setItem('token', response.data.data.access_token)
+  const userLogin = useSelector(state => state.userLogin)
+  const { loading, error, userInfo } = userLogin
 
-      console.log(response)
-      router.push('/products')
-    }).catch(error => {
-      setLoading(false)
-      if(error){
-        setError(error.response.data)
-        console.error(error)
-      }
-      else {
-        setError('Something went wrong')
-      }
-    })
+  const loginClick = (e) => {
+    e.preventDefault()
+    dispatch (login ( phone, password ))
   }
+
+  useEffect (() => {
+    if(userInfo) {
+      router.push('/')
+    }
+  }, [router, userInfo])
 
   return (
     <div className='w-1/2 mx-auto'>
