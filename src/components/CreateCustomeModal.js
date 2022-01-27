@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const createCustomerModal = ({ modalClose, createCustomerHandler }) => {
+const CreateCustomerModal = ({ modalClose, createCustomerHandler }) => {
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [state_id, setState_Id] = useState('')
@@ -29,4 +29,6 @@ const createCustomerModal = ({ modalClose, createCustomerHandler }) => {
   )
 };
 
-export default createCustomerModal;
+export default CreateCustomerModal;
+
+
