@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { listCustomers, createCustomer } from '../actions/customerActions';
+import { listCustomers, createCustomer, deleteCustomer } from '../actions/customerActions';
 import CreateCustomerModal from '../components/CreateCustomerModal';
 
 
@@ -16,11 +16,18 @@ const Customers = () => {
   const customerCreate = useSelector(state => state.customerCreate)
   const { loading: loadingCreate, error: errorCreate, success: successCreate, customer: createdCustomer} = customerCreate
 
+  const customerDelete = useSelector(state => state.customerDelete)
+  const { success: successDelete } = customerDelete
+
   const createCustomerHandler = (name, address, state_id) => {
     if(!loadingCreate && !errorCreate) {
       dispatch(createCustomer(name, address, state_id))
       modal.current.classList.remove('show')
     }
+  }
+
+  function deleteHandler(id) {
+    dispatch(deleteCustomer(id))
   }
   const modalOpen = () => {
     modal.current.classList.add('show')
@@ -31,7 +38,7 @@ const Customers = () => {
 
   useEffect(() => {
     dispatch(listCustomers())
-  }, [dispatch, successCreate, createdCustomer]);
+  }, [dispatch, successCreate, createdCustomer, successDelete]);
 
 
 
@@ -50,17 +57,19 @@ const Customers = () => {
           <button onClick={modalOpen} className='bg-black text-white p-4 rounded'>Add Customer</button>
         </div>
       </div>
-      <div className='grid grid-cols-3 text-center items-center border-b-2'>
+      <div className='grid grid-cols-4 text-center items-center border-b-2'>
         <h2>Name</h2>
         <h2>Address</h2>
         <h2>State ID</h2>
+        <h2></h2>
       </div>
       {loading ? <h2>Loading...</h2> : !loading && customers.length === 0 ? <h2>No Customers</h2> :
         customers.map(customer => (
-          <div key={customer.id} className='grid grid-cols-3 text-center items-center border-b-2'>
+          <div key={customer.id} className='grid grid-cols-4 text-center items-center border-b-2'>
             <h2>{customer.name}</h2>
             <h2>{customer.address}</h2>
             <h2>{customer.state_id}</h2>
+            <h2 onClick={() => deleteHandler(customer.id)}>DELETE ICON</h2>
           </div>
         ))}
     </div>
