@@ -18,8 +18,9 @@ const Customers = () => {
   const { loading: loadingCreate, error: errorCreate, success: successCreate, customer: createdCustomer} = customerCreate
 
   const createCustomerHandler = () => {
-    dispatch(createCustomer(name, address, state_id))
-    if(!loading) {
+
+    if(!loadingCreate && !errorCreate) {
+      dispatch(createCustomer(name, address, state_id))
       modal.current.classList.remove('show')
     }
   }
@@ -39,6 +40,7 @@ const Customers = () => {
 
   return (
     <div className='px-8'>
+      { errorCreate ? <h4 className='text-red-500'>{errorCreate.data.message}</h4> : <h4></h4> }
       <div ref={modal} className='modal'>
         <div className='absolute top-0 left-0 w-screen h-screen opacity-75 bg-white'></div>
         <div className='w-2/4 h-1/2 absolute rounded text-xl pt-16 bg-gray-500 text-white m-auto text-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '>
