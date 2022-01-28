@@ -1,37 +1,22 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import { listProducts } from '../actions/productActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Products = () => {
-  const [products, setProducts] = useState([])
+  const dispatch = useDispatch()
 
-  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
-
-  const authAxios = axios.create({
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  })
-
-  const getProducts = async () => {
-    try {
-      const res = await authAxios.get(`https://bagcomfort.com/api/product`)
-      setProducts(res.data.data)
-
-      console.log(products, res)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const productList = useSelector(state => state.productList)
+  const {products, error, loading} = productList
 
   useEffect(() => {
-    getProducts()
-  }, []);
-
-
+    dispatch(listProducts())
+  }, [dispatch]);
 
   return (
     <div className='px-8'>
+      { error && <h4>Error</h4> }
+      { loading && <h4>Loading</h4> }
       <div>
         <input className='border-2 border-black' id='search' type='search' />
         <label htmlFor='search'>Search</label>
