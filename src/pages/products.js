@@ -21,7 +21,7 @@ const Products = () => {
       router.push('/login')
     } else
     dispatch(listProducts())
-  }, [dispatch]);
+  }, [dispatch, router, userInfo]);
 
   return (
     <div className='px-8'>

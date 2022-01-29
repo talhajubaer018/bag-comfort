@@ -48,7 +48,7 @@ const Customers = () => {
     } else {
       dispatch(listCustomers())
     }
-  }, [dispatch, successCreate, createdCustomer, successDelete]);
+  }, [dispatch, router, userInfo, successCreate, createdCustomer, successDelete]);
 
 
 
