@@ -26,7 +26,7 @@ input:-webkit-autofill:active {
     caret-color: white;
 }
 /* main bg image */
-#__next::before {
+.next_start::before {
   content: '';
   position: fixed;
   height: 100%;
@@ -36,13 +36,13 @@ input:-webkit-autofill:active {
   background-image: linear-gradient(rgba(50, 70, 80, 0.9) 0px, rgb(13, 16, 27) 100%);
 }
 
-#__next {
+.next_start {
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
   z-index: -10;
 }
-#__next::after {
+.next_start::after {
   content: '';
   position: fixed;
   height: 100%;
@@ -52,6 +52,16 @@ input:-webkit-autofill:active {
   background-image: url('/cover.jpg');
   background-size: cover;
   background-position: center;
+}
+.main::after {
+  content: '';
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top:0;
+  z-index: -5;
+  background-image: url('/pattern.png');
+  background-size: 2.875rem;
 }
 /* modal open close */
 .modal {
@@ -63,6 +73,109 @@ input:-webkit-autofill:active {
   opacity: 1;
   pointer-events: auto;
 }
+/* modal card */
+.modal-card::before {
+  content: '';
+  position: absolute;
+  border-top: 1px solid rgba(255,255,255,0.6);
+  border-bottom: 1px solid rgba(255,255,255,0.6);
+  left: 15px;
+  right: 15px;
+  top: 0;
+  bottom: 0;
+}
+.modal-card::after {
+  content: '';
+  position: absolute;
+  border-right: 1px solid rgba(255,255,255,0.6);
+  border-left: 1px solid rgba(255,255,255,0.6);
+  top: 15px;
+  bottom: 15px;
+  right: 0;
+  left: 0;
+}
+/* modal card arrows */
+/* top-left arrow */
+.modal-card-arrow-top-left::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 2px;
+  height: 8px;
+  background-color: white;
+}
+.modal-card-arrow-top-left::after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 8px;
+  height: 2px;
+  background-color: white;
+}
+
+/* top-right arrow */
+.modal-card-arrow-top-right::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  right: 0;
+  width: 2px;
+  height: 8px;
+  background-color: white;
+}
+.modal-card-arrow-top-right::after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 8px;
+  height: 2px;
+  background-color: white;
+}
+/* bottom-right arrow */
+
+.modal-card-arrow-bottom-right::before {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  width: 2px;
+  height: 8px;
+  background-color: white;
+}
+.modal-card-arrow-bottom-right::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 8px;
+  height: 2px;
+  background-color: white;
+}
+
+/* bottom-left-arrow */
+
+.modal-card-arrow-bottom-left::before {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 2px;
+  height: 8px;
+  background-color: white;
+}
+.modal-card-arrow-bottom-left::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 8px;
+  height: 2px;
+  background-color: white;
+}
+
 /* hamburger button */
 .open .hamburger-top {
   transform: rotate(45deg) translate(6px, 6px);
