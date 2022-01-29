@@ -25,11 +25,11 @@ const CreateCustomerModal = ({ modalClose, createCustomerHandler }) => {
           <div>
             <button onClick={() => createCustomerHandler(name, address, state_id)} className='z-20 relative bg-transparent border-1 border-customTeal-500 text-customTeal-500 hover:bg-customTeal-500 hover:text-white p-4 rounded transition-all duration-200'>Enter</button>
           </div>
-          <div class="modal-card-arrow">
-            <div class="modal-card-arrow-top-left absolute top-0 left-0 w-2 h-2 border-white"></div>
-            <div class="modal-card-arrow-top-right absolute top-0 right-0 w-2 h-2 border-white"></div>
-            <div class="modal-card-arrow-bottom-left absolute bottom-0 left-0 w-2 h-2 border-white"></div>
-            <div class="modal-card-arrow-bottom-right absolute bottom-0 right-0 w-2 h-2 border-white"></div>
+          <div className="modal-card-arrow">
+            <div className="modal-card-arrow-top-left absolute top-0 left-0 w-2 h-2 border-white"></div>
+            <div className="modal-card-arrow-top-right absolute top-0 right-0 w-2 h-2 border-white"></div>
+            <div className="modal-card-arrow-bottom-left absolute bottom-0 left-0 w-2 h-2 border-white"></div>
+            <div className="modal-card-arrow-bottom-right absolute bottom-0 right-0 w-2 h-2 border-white"></div>
           </div>
       </div>
     </>
