@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const Sidebar = () => {
-  const [showSideMenu, setShowSideMenu] = useState(false)
 
   const hamburger = useRef(null)
   const sideMenu = useRef(null)
@@ -13,20 +12,19 @@ const Sidebar = () => {
 
   const navToggle = () => {
     hamburger.current.classList.toggle('open')
-    console.log(hamburger.current)
     sideMenu.current.classList.toggle('open')
   }
   useEffect(() => {
-    if(!showSideMenu) return
 
     const handleClick = (e) => {
-      if (sideMenu.current && sideMenu.current.contains(e.target)) {
-        setShowSideMenu(false)
+      if (sideMenu.current && hamburger.current && !sideMenu.current.contains(e.target) && !hamburger.current.contains(e.target) )  {
+        sideMenu.current.classList.remove('open')
+        hamburger.current.classList.remove('open')
       }
     }
     window.addEventListener('click', handleClick)
     return () => window.removeEventListener('click', handleClick)
-  }, [showSideMenu])
+  }, [navToggle])
 
   return (
     <div className='text-left text-offWhite-300'>
@@ -35,7 +33,7 @@ const Sidebar = () => {
         <span className='hamburger-middle absolute top-0 left-0 w-6 h-0.5 bg-white transform rotate-0 transition-all duration-500 translate-y-2'></span>
         <span className='hamburger-bottom absolute top-0 left-0 w-6 h-0.5 bg-white transform rotate-0 transition-all duration-500 translate-y-4'></span>
       </button>
-      <div ref={sideMenu} className='sideMenu bg-customGreen-500 flex flex-col gap-12 text-xl fixed w-1/4 h-full left-0 px-8 py-8 mt-4'>
+      <div ref={sideMenu} className='sideMenu bg-customGreen-500 flex flex-col gap-12 text-xl fixed w-1/4 h-full left-0 px-8 py-8 mt-4 z-20'>
         <Link href="/shop">
           <a><h2 onClick={navToggle} className='hover:text-white transition-all duration-300'>SHOP</h2></a>
         </Link>
