@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, {useState, useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -7,8 +8,10 @@ import CreateCustomerModal from '../components/CreateCustomerModal';
 
 const Customers = () => {
 
-  const modal = useRef(null)
   const dispatch = useDispatch()
+  const router = useRouter()
+
+  const modal = useRef(null)
 
   const customerList = useSelector(state => state.customerList)
   const {customers, error, loading} = customerList
@@ -18,6 +21,9 @@ const Customers = () => {
 
   const customerDelete = useSelector(state => state.customerDelete)
   const { success: successDelete } = customerDelete
+
+  const userLogin = (useSelector(state => state.userLogin))
+  const { userInfo } = userLogin
 
   const createCustomerHandler = (name, address, state_id) => {
     if(!loadingCreate && !errorCreate) {
@@ -37,7 +43,11 @@ const Customers = () => {
   }
 
   useEffect(() => {
-    dispatch(listCustomers())
+    if(!userInfo) {
+      router.push('/login')
+    } else {
+      dispatch(listCustomers())
+    }
   }, [dispatch, successCreate, createdCustomer, successDelete]);
 
 

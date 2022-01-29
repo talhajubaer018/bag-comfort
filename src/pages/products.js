@@ -1,15 +1,25 @@
 import React, {useState, useEffect} from 'react';
 import { listProducts } from '../actions/productActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 
 const Products = () => {
   const dispatch = useDispatch()
 
+  const router = useRouter()
+
   const productList = useSelector(state => state.productList)
   const {products, error, loading} = productList
 
+  const userLogin = (useSelector(state => state.userLogin))
+  const { userInfo } = userLogin
+
   useEffect(() => {
+
+    if(!userInfo) {
+      router.push('/login')
+    } else
     dispatch(listProducts())
   }, [dispatch]);
 
