@@ -7,8 +7,14 @@ import rootReducer from './reducers/index'
 if (typeof window !== 'undefined') {
   var userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 }
+if (typeof window !== 'undefined') {
+  var userPhoneFromStorage = localStorage.getItem('userPhone') ? JSON.parse(localStorage.getItem('userPhone')) : null
+}
 const initialState = {
-  userLogin: { userInfo: userInfoFromStorage }
+  userLogin: {
+     userInfo: userInfoFromStorage,
+     userPhone: userPhoneFromStorage
+   }
 }
 
 const middleware = [thunk]
