@@ -6,25 +6,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        customYellow: {
-          500: '#C3872C',
-          hover: '#D8A557',
+        customGreen: {
+          500: '#273136',
+          700: '#1D2835'
+        },
+        offWhite: {
+          50: 'rgba(255,255,255,0.05)',
+          300: 'rgba(255,255,255,0.3)',
         },
         customTeal: {
-          200: '#E4EEF1',
-          300: '#E0F1FB',
-          500: '#62C8D8'
-        },
-        customGray: {
-          200: '#F3F3F3',
-          300: '#F8F9FB',
-          400: '#7B7B7B',
-          700: '#707070',
-          900: '#4B4B4B'
-        },
-        customLavender: {
-          300: '#EEECFF'
+          500: '#30beff'
         }
+      },
+      borderWidth: {
+        1: '1px'
       },
       fontSize: {
         10: '0.625rem !important',
