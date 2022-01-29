@@ -27,8 +27,8 @@ const Login = () => {
   }, [router, userInfo])
 
   return (
-    <div className='flex flex-col w-1/2 mx-auto items-center justify-center pt-12'>
-      <div className='w-1/2 mx-auto'>
+    <div className='flex flex-col fixed top-0 left-0 w-full h-full mx-auto items-center justify-center'>
+      <div className='w-1/4 mx-auto'>
         <h2 className='text-center text-white'>Sign In</h2>
         <div className='text-center flex flex-col justify-center mb-4'>
           <label className='text-left text-white'>Phone</label>
@@ -42,7 +42,7 @@ const Login = () => {
           {error && <div className='text-red-500'>{error}</div>}
         </div>
         <div className=' text-center' onClick={loginClick}>
-          <button className='w-full px-12 py-4 bg-transparent text-customTeal-500 border-solid border-1 rounded-3xl border-customTeal-500 hover:bg-customTeal-500 hover:text-black transition-all duration-300'>Login</button>
+          <button className='w-full px-12 py-4 bg-transparent text-customTeal-500 border-solid border-1 rounded-md border-customTeal-500 hover:bg-customTeal-500 hover:text-black transition-all duration-300'>Login</button>
         </div>
       </div>
     </div>
