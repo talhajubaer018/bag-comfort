@@ -53,9 +53,9 @@ const Customers = () => {
 
 
   return (
-    <div className='px-8'>
+    <div className='px-8 text-white'>
       { errorCreate ? <h4 className='text-red-500'>{errorCreate.data.message}</h4> : <h4></h4> }
-      <div ref={modal} className='modal '>
+      <div ref={modal} className='modal fixed w-full h-full top-0 left-0 bg-customGreen-500 bg-opacity-95 z-20'>
         <CreateCustomerModal modalClose={modalClose} createCustomerHandler={createCustomerHandler} />
       </div>
       <div className='flex items-center justify-center gap-x-8 py-4'>
@@ -67,21 +67,30 @@ const Customers = () => {
           <button onClick={modalOpen} className='bg-black text-white p-4 rounded'>Add Customer</button>
         </div>
       </div>
-      <div className='grid grid-cols-4 text-center items-center border-b-2'>
-        <h2>Name</h2>
-        <h2>Address</h2>
-        <h2>State ID</h2>
-        <h2></h2>
+      <div className='mt-12'>
+        <table className='w-full text-left border-1 border-solid '>
+          <thead>
+            <tr className='border-b-1 font-bold'>
+              <th className='p-4 w-40'>Name</th>
+              <th className='p-4'>Address</th>
+              <th className='p-4 w-28 text-center'>State ID</th>
+              <th className='p-4'>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+          {loading ? <tr><td>Loading...</td></tr> : !loading && customers.length === 0 ? <tr><td>No Customers</td></tr> :
+            customers.map(customer => (
+              <tr key={customer.id} className='border-b-1 hover:bg-offWhite-50 opacity-75 hover:opacity-100 transition-all duration-200'>
+                <td className='p-4'>{customer.name}</td>
+                <td className='p-4'>{customer.address}</td>
+                <td className='p-4 text-center'>{customer.state_id}</td>
+                <td className='p-4 cursor-pointer' onClick={() => deleteHandler(customer.id)}>DELETE ICON</td>
+              </tr>
+            )
+          )}
+          </tbody>
+        </table>
       </div>
-      {loading ? <h2>Loading...</h2> : !loading && customers.length === 0 ? <h2>No Customers</h2> :
-        customers.map(customer => (
-          <div key={customer.id} className='grid grid-cols-4 text-center items-center border-b-2'>
-            <h2>{customer.name}</h2>
-            <h2>{customer.address}</h2>
-            <h2>{customer.state_id}</h2>
-            <h2 onClick={() => deleteHandler(customer.id)}>DELETE ICON</h2>
-          </div>
-        ))}
     </div>
   )
 };
