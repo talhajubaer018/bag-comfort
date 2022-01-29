@@ -12,9 +12,10 @@ export const login = (phone, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(`https://bagcomfort.com/api/login`, { phone, password }, config)
-    dispatch ({ type: USER_LOGIN_SUCCESS, payload: data })
+    dispatch ({ type: USER_LOGIN_SUCCESS, payload: { data, phone } })
 
     localStorage.setItem('userInfo', JSON.stringify(data))
+    localStorage.setItem('userPhone', JSON.stringify(phone))
   } catch (error) {
     dispatch ({
       type: USER_LOGIN_FAIL,
@@ -25,5 +26,6 @@ export const login = (phone, password) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   localStorage.removeItem('userInfo')
+  localStorage.removeItem('userPhone')
   dispatch({ type: USER_LOGOUT })
 }
