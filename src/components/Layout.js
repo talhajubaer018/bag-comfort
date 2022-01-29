@@ -8,9 +8,9 @@ import store from '../store'
 const Layout = ({ children }) => {
   return (
     <Provider store={store}>
-      <div className=''>
+      <div className='next_start'>
         <Header />
-        <main>
+        <main className='main'>
           {children}
         </main>
         {/* <Footer /> */}
