@@ -12,7 +12,7 @@ export const login = (phone, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(`https://bagcomfort.com/api/login`, { phone, password }, config)
-    dispatch ({ type: USER_LOGIN_SUCCESS, payload: { data, phone } })
+    dispatch ({ type: USER_LOGIN_SUCCESS, payload: { data: data.data, phone } })
 
     localStorage.setItem('userInfo', JSON.stringify(data))
     localStorage.setItem('userPhone', JSON.stringify(phone))
