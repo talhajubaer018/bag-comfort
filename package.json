@@ -1,5 +1,6 @@
 {
   "name": "bag-comfort",
+  "proxy": "http://localhost:5000",
   "private": true,
   "scripts": {
     "dev": "next dev",

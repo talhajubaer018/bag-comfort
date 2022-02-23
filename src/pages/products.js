@@ -24,7 +24,7 @@ const Products = () => {
   }, [dispatch, router, userInfo]);
 
   return (
-    <div className='px-8'>
+    <div className='px-8 text-white'>
       { error && <h4>Error</h4> }
       { loading && <h4>Loading</h4> }
       <div>

@@ -22,6 +22,9 @@ const Customers = () => {
   const customerDelete = useSelector(state => state.customerDelete)
   const { success: successDelete } = customerDelete
 
+  const stateList = useSelector(state => state.stateList)
+  const { states } = stateList
+
   const userLogin = (useSelector(state => state.userLogin))
   const { userInfo } = userLogin
 
@@ -56,7 +59,7 @@ const Customers = () => {
     <div className='px-8 text-white'>
       { errorCreate ? <h4 className='text-red-500'>{errorCreate.data.message}</h4> : <h4></h4> }
       <div ref={modal} className='modal fixed w-full h-full top-0 left-0 bg-customGreen-500 bg-opacity-95 z-20'>
-        <CreateCustomerModal modalClose={modalClose} createCustomerHandler={createCustomerHandler} />
+        <CreateCustomerModal modalClose={modalClose} createCustomerHandler={createCustomerHandler} states={states} />
       </div>
       <div className='flex items-center justify-center gap-x-8 py-4'>
         <div className='mr-auto'>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CreateCustomerModal = ({ modalClose, createCustomerHandler }) => {
+const CreateCustomerModal = ({ modalClose, createCustomerHandler, states }) => {
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [state_id, setState_Id] = useState('')
@@ -20,7 +20,14 @@ const CreateCustomerModal = ({ modalClose, createCustomerHandler }) => {
           </div>
           <div className='flex flex-col text-left w-3/4 m-auto mb-4'>
             <label className='z-10' htmlFor='id'>State Id</label>
-            <input className='input border-2 border-solid border-offWhite-300 rounded-md p-2 w-full bg-offWhite-50 opacity-50 text-white z-20' type='text' name='state_id' value={state_id} onChange={e => setState_Id(e.target.value)} />
+            {/* <input className='input border-2 border-solid border-offWhite-300 rounded-md p-2 w-full bg-offWhite-50 opacity-50 text-white z-20' type='text' name='state_id' value={state_id} onChange={e => setState_Id(e.target.value)} /> */}
+            <div className='relatvie z-20'>
+              <select name='states' value={state_id} onChange={e => setState_Id(e.target.value)} className='input border-2 border-solid border-offWhite-300 rounded-md p-2 w-full bg-offWhite-50 opacity-50 text-white z-20'>
+                {states.map(state => (
+                  <option className='states bg-customGreen-500' key={state.id} value={state.id}>{state.name} ({state.id})</option>
+                ))}
+              </select>
+            </div>
           </div>
           <div>
             <button onClick={() => createCustomerHandler(name, address, state_id)} className='z-20 relative bg-transparent border-1 border-customTeal-500 text-customTeal-500 hover:bg-customTeal-500 hover:text-white p-4 rounded transition-all duration-200'>Enter</button>
@@ -31,6 +38,7 @@ const CreateCustomerModal = ({ modalClose, createCustomerHandler }) => {
             <div className="modal-card-arrow-bottom-left absolute bottom-0 left-0 w-2 h-2 border-white"></div>
             <div className="modal-card-arrow-bottom-right absolute bottom-0 right-0 w-2 h-2 border-white"></div>
           </div>
+
       </div>
     </>
   )
