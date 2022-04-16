@@ -4,6 +4,7 @@ import {customerListReducer, customerCreateReducer, customerDeleteReducer} from 
 import { userLoginReducer } from "../reducers/userReducers";
 import { productListReducer } from "./productReducer";
 import { stateListReducer } from "./statesReducer";
+import { orderListReducer } from "./orderReducer";
 
 export default combineReducers({
   customerList: customerListReducer,
@@ -11,5 +12,6 @@ export default combineReducers({
   userLogin: userLoginReducer,
   customerDelete: customerDeleteReducer,
   productList: productListReducer,
-  stateList: stateListReducer
+  stateList: stateListReducer,
+  orderList: orderListReducer
 })

@@ -49,6 +49,12 @@ const Sidebar = () => {
             <a><h2 onClick={navToggle} className='hover:text-white transition-all duration-300'>CUSTOMERS</h2></a>
           </Link>
         }
+        {
+          userInfo &&
+          <Link href="/orders">
+            <a><h2 onClick={navToggle} className='hover:text-white transition-all duration-300'>ORDERS</h2></a>
+          </Link>
+        }
 
       </div>
     </div>
