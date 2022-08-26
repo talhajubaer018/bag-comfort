@@ -13,7 +13,7 @@ export const listProducts = () => async (dispatch, getState) => {
     try {
       dispatch({ type: PRODUCTS_LIST_REQUEST })
 
-      const { data } = await axios.get(`https://bagcomfort.com/api/product`, config)
+      const { data } = await axios.get(`https://qualityconnector.com/api/product`, config)
 
       dispatch({
         type: PRODUCTS_LIST_SUCCESS,

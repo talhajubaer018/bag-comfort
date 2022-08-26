@@ -23,6 +23,7 @@ const CreateCustomerModal = ({ modalClose, createCustomerHandler, states }) => {
             {/* <input className='input border-2 border-solid border-offWhite-300 rounded-md p-2 w-full bg-offWhite-50 opacity-50 text-white z-20' type='text' name='state_id' value={state_id} onChange={e => setState_Id(e.target.value)} /> */}
             <div className='relatvie z-20'>
               <select name='states' value={state_id} onChange={e => setState_Id(e.target.value)} className='input border-2 border-solid border-offWhite-300 rounded-md p-2 w-full bg-offWhite-50 opacity-50 text-white z-20'>
+                <option className='states bg-customGreen-500' value='' defaultValue=''>Select State</option>
                 {states.map(state => (
                   <option className='states bg-customGreen-500' key={state.id} value={state.id}>{state.name} ({state.id})</option>
                 ))}

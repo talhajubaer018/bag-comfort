@@ -12,7 +12,7 @@ export const listCustomers = () => async (dispatch) => {
     try {
       dispatch({ type: CUSTOMERS_LIST_REQUEST })
 
-      const { data } = await authAxios.get(`https://bagcomfort.com/api/customer`)
+      const { data } = await authAxios.get(`https://qualityconnector.com/api/customer`)
 
       dispatch({
         type: CUSTOMERS_LIST_SUCCESS,
@@ -27,7 +27,7 @@ export const listCustomers = () => async (dispatch) => {
     }
 }
 
-export const createCustomer = (name, address, id) => async (dispatch) => {
+export const createCustomer = (name, address, state_id) => async (dispatch) => {
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
 
   const authAxios = axios.create({
@@ -38,10 +38,10 @@ export const createCustomer = (name, address, id) => async (dispatch) => {
   try {
     dispatch({ type: CUSTOMER_CREATE_REQUEST })
 
-    const { data } = await authAxios.post(`https://bagcomfort.com/api/customer`, {
+    const { data } = await authAxios.post(`https://qualityconnector.com/api/customer`, {
       name: name,
       address: address,
-      state_id: id,
+      state_id: state_id,
 
     })
 
@@ -70,7 +70,7 @@ export const deleteCustomer = (id) => async (dispatch, getState) => {
       }
     }
 
-    const { data } = await axios.delete(`https://bagcomfort.com/api/customer/${id}`, config)
+    const { data } = await axios.delete(`https://qualityconnector.com/api/customer/${id}`, config)
 
     dispatch({
       type: CUSTOMER_DELETE_SUCCESS

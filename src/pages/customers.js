@@ -3,6 +3,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 import { listCustomers, createCustomer, deleteCustomer } from '../actions/customerActions';
+import { listStates } from '../actions/stateActions';
 import CreateCustomerModal from '../components/CreateCustomerModal';
 
 
@@ -47,9 +48,10 @@ const Customers = () => {
 
   useEffect(() => {
     if(!userInfo) {
-      router.push('/login')
+      // router.push('/login')
     } else {
       dispatch(listCustomers())
+      dispatch(listStates())
     }
   }, [dispatch, router, userInfo, successCreate, createdCustomer, successDelete]);
 
