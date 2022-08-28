@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import 'tailwindcss/tailwind.css'
 import Layout from '../components/Layout'
 

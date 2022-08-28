@@ -3,6 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@100;300;400;600;700;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap');
 
+@import './variables.scss';
+@import './ui.scss';
+@import './products.scss';
+
 html,
 body {
 	padding: 0;
@@ -16,6 +20,27 @@ a {
 
 * {
 	box-sizing: border-box;
+}
+
+h1 {
+	font-size: $h1-font-size;
+	font-weight: $font-normal;
+}
+h2 {
+	font-size: $h2-font-size;
+	font-weight: $font-normal;
+}
+h3 {
+	font-size: $h3-font-size;
+	font-weight: $font-normal;
+}
+h4 {
+	font-size: $h4-font-size;
+	font-weight: $font-normal;
+}
+h5 {
+	font-size: $h5-font-size;
+	font-weight: $font-normal;
 }
 /* input webkit autofill */
 input:-webkit-autofill,
@@ -32,6 +57,9 @@ input:-webkit-autofill:active {
 	background-color: #0a0a0b;
 	color: #babec4;
 	min-height: 100%;
+}
+.main {
+	padding: 1rem;
 }
 /* .next_start::before {
   content: '';

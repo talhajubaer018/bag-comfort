@@ -1,0 +1,58 @@
+.product-section {
+	background-color: $black-color;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0px, 1fr));
+	gap: 1.5rem;
+
+	@media screen and (max-width: 1300px) {
+		& {
+			grid-template-columns: repeat(2, minmax(0px, 1fr));
+		}
+	}
+	@media screen and (max-width: 900px) {
+		& {
+			grid-template-columns: repeat(1, minmax(0px, 1fr));
+		}
+	}
+
+	.product-card {
+		background-color: $primary-color;
+		text-align: center;
+		padding: 2.5rem;
+		border-radius: $border-rounded;
+
+		.product-name {
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+			font-weight: $font-semibold;
+		}
+		.location,
+		.time {
+			display: flex;
+			justify-content: center;
+			gap: 1rem;
+			margin-bottom: 1rem;
+			color: $lightGray-color;
+		}
+		.social-icons {
+			display: flex;
+			justify-content: space-evenly;
+			margin-bottom: 1rem;
+		}
+		.profile-info {
+			display: flex;
+			justify-content: space-evenly;
+			gap: 1rem;
+			color: $lightGray-color;
+
+			span {
+				color: $offWhite-color;
+			}
+
+			h3 {
+				border: 1px dashed $lightGray-color;
+				padding: 0.75rem;
+			}
+		}
+	}
+}
